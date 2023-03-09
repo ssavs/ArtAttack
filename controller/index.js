@@ -36,7 +36,12 @@ route.put('/user/:id',bodyParser.json(), (req, res)=>{
 // Register
 route.post('/register', bodyParser.json(), (req, res)=> {
     user.createUser(req, res);
-})
+});
+
+route.post('/user', bodyParser.json(), (req, res)=> {
+    user.addUser(req, res);
+});
+
 // Delete
 route.delete('/user/:id', (req, res)=>{
     user.deleteUser(req, res);

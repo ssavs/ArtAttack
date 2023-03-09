@@ -1,18 +1,18 @@
 //Import db connection from config folder
-let db = require("../config");
+let database = require("../config");
 //Import bcrypt module
 let { hash, compare, hashSync } = require("bcrypt");
 
 // creating a token
 let { createToken } = require("../middleware/AuthenticatedUser.js");
 
-class User {
+class User {  
   login(req, res) {
     const { emailAddress, userPassword } = req.body;
     const strQry = `
-              SELECT *   FROM Users   WHERE emailAddress = ${emailAddress};`;
+              SELECT * FROM Users   WHERE emailAddress = ${emailAddress};`;
 
-    db.query(strQry, async (err, data) => {
+    database.query(strQry, async (err, data) => {
       if (err) throw err;
       if (!data || data == null) {
         res.status(401).json({ err: "You provided the wrong email address" });
@@ -44,12 +44,27 @@ class User {
     });
   }
 
+  addUser(req, res) {
+    const Users = req.body;
+    const strQry = `INSERT INTO Users SET ?;`;
+    database.query(strQry, Users,
+      (err) => {
+        if (err){
+          console.log(err);
+          res.status(400).json({ err: `Something went wrong.` });
+        } else {
+          res.status(200).json({ msg: `Success` });
+        }
+      }
+    );
+  }
+
   fetchUsers(req, res) {
     const strQry = `
           SELECT
           userID,firstName,lastName ,emailAddress,userRole,userProfile,cellphoneNumber FROM Users;
           `;
-    db.query(strQry, (err, data) => {
+          database.query(strQry, (err, data) => {
       if (err) throw err;
       else res.status(200).json({ result: data });
     });
@@ -59,7 +74,7 @@ class User {
     const strQry = `
           SELECT     userID,firstName,lastName, cellphoneNumber, emailAddress,userRole ,userProfile  FROM Users WHERE userID = ?;
           `;
-    db.query(strQry, [req, params.id], (err, data) => {
+          database.query(strQry, [req, params.id], (err, data) => {
       if (err) throw err;
       else res.status(200).json({ result: data });
     });
@@ -78,7 +93,7 @@ class User {
     // sql query
     const strQry = `INSERT INTO Users
           SET ?;`;
-    db.query(strQry, [detail], (err) => {
+          database.query(strQry, [detail], (err) => {
       if (err) {
         res.status(401).json({ err });
       } else {
@@ -105,7 +120,7 @@ class User {
           WHERE userID = ?;
           `;
     //db
-    db.query(strQry, [data, req.params.id], (err) => {
+    database.query(strQry, [data, req.params.id], (err) => {
       if (err) throw err;
       res.status(200).json({ msg: "A row was affected" });
     });
@@ -117,7 +132,7 @@ class User {
           WHERE userID = ?;
           `;
     //db
-    db.query(strQry, [req.params.id], (err) => {
+    database.query(strQry, [req.params.id], (err) => {
       if (err) throw err;
       res.status(200).json({ msg: "A record was removed from a database" });
     });
@@ -128,7 +143,7 @@ class Product {
   fetchProducts(req, res) {
     const strQry = `SELECT prodID, prodName, prodDescription, category, price, prodQuantity, imgURL,prodArtist
           FROM Products;`;
-    db.query(strQry, (err, results) => {
+          database.query(strQry, (err, results) => {
       if (err) throw err;
       res.status(200).json({ results: results });
     });
@@ -137,7 +152,7 @@ class Product {
     const strQry = `SELECT prodID, prodName, prodDescription, category, price, prodQuantity, imgURL,prodArtist
           FROM Products
           WHERE prodID = ?;`;
-    db.query(strQry, [req.params.id], (err, results) => {
+          database.query(strQry, [req.params.id], (err, results) => {
       if (err) throw err;
       res.status(200).json({ results: results });
     });
@@ -147,7 +162,7 @@ class Product {
           INSERT INTO Products
           SET ?;
           `;
-    db.query(strQry, [req.body], (err) => {
+          database.query(strQry, [req.body], (err) => {
       if (err) {
         res.status(400).json({ err: "Unable to insert a new record." });
       } else {
@@ -161,7 +176,7 @@ class Product {
           SET ?
           WHERE prodID = ?;
           `;
-    db.query(strQry, [req.body, req.params.id], (err) => {
+          database.query(strQry, [req.body, req.params.id], (err) => {
       if (err) {
         res.status(400).json({ err: "Unable to update a record." });
         console.log(err);
@@ -175,7 +190,7 @@ class Product {
           DELETE FROM Products
           WHERE prodID= ?;
           `;
-    db.query(strQry, [req.params.id], (err) => {
+          database.query(strQry, [req.params.id], (err) => {
       if (err) res.status(400).json({ err: "The record was not found." });
       res.status(200).json({ msg: "A product was deleted." });
     });
