@@ -10,11 +10,7 @@ class User {
   login(req, res) {
     const { emailAddress, userPassword } = req.body;
     const strQry = `
-              SELECT userID, firstName, lastName, emailAddress, userPassword, gender,
-              userRole, userProfile, cellphoneNumber, joinDate
-              FROM Users 
-              WHERE emailAddress = ${emailAddress};
-             `;
+              SELECT *   FROM Users   WHERE emailAddress = ${emailAddress};`;
 
     db.query(strQry, async (err, data) => {
       if (err) throw err;
@@ -26,7 +22,7 @@ class User {
           const jwToken = createToken({
             emailAddress,
             userPassword,
-          });
+          }); 
           //saving token
           res.cookie("LegitUser", jwToken, {
             maxAge: 3600000,
@@ -51,7 +47,7 @@ class User {
   fetchUsers(req, res) {
     const strQry = `
           SELECT
-          userID,firstName,lastName ,emailAddress,gender,userRole,userProfile,cellphoneNumber,joinDate FROM Users;
+          userID,firstName,lastName ,emailAddress,userRole,userProfile,cellphoneNumber FROM Users;
           `;
     db.query(strQry, (err, data) => {
       if (err) throw err;
@@ -61,7 +57,7 @@ class User {
 
   fetchUser(req, res) {
     const strQry = `
-          SELECT     userID,firstName,lastName,  gender , cellphoneNumber, emailAddress,userRole ,userProfile ,joinDate  FROM Users WHERE userID = ?;
+          SELECT     userID,firstName,lastName, cellphoneNumber, emailAddress,userRole ,userProfile  FROM Users WHERE userID = ?;
           `;
     db.query(strQry, [req, params.id], (err, data) => {
       if (err) throw err;
@@ -130,7 +126,7 @@ class User {
 
 class Product {
   fetchProducts(req, res) {
-    const strQry = `SELECT prodID, prodName, prodDescription, category, price, prodQuantity, imgURL
+    const strQry = `SELECT prodID, prodName, prodDescription, category, price, prodQuantity, imgURL,prodArtist
           FROM Products;`;
     db.query(strQry, (err, results) => {
       if (err) throw err;
@@ -138,7 +134,7 @@ class Product {
     });
   }
   fetchProduct(req, res) {
-    const strQry = `SELECT prodID, prodName, prodDescription, category, price, prodQuantity, imgURL
+    const strQry = `SELECT prodID, prodName, prodDescription, category, price, prodQuantity, imgURL,prodArtist
           FROM Products
           WHERE prodID = ?;`;
     db.query(strQry, [req.params.id], (err, results) => {
