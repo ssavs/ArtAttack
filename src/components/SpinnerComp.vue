@@ -6,7 +6,7 @@
     color: official;
     display: inline-block;
     position:relative;
-    width: 90px;
+    width: 60px;
     height: 90px;
   }
   .lds-spinner div {

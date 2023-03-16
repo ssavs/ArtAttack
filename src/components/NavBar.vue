@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg fixed-top">
+  <nav class="navbar navbar-expand-lg sticky-top">
     <div class="container-fluid">
       <img
         src="https://i.postimg.cc/NfPKjMXN/Screenshot-2023-03-16-100847-removebg-preview.png"
@@ -74,7 +74,7 @@ export default {};
 
 .btn {
     color: aliceblue;
-    background-color:rgb(185, 26, 180) ;
+    background-color:rgb(168, 98, 23) ;
 }
 
 /* .btn span{

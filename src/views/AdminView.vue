@@ -10,7 +10,7 @@
 
         </div>
         <div class="col">
-          <button type="button" class="btn btn-primary" style="width: 5rem">
+          <button type="button" class="btn btn-primary" style="width: 5rem; height: ;">
             AddUser
           </button>
         </div>
@@ -44,7 +44,7 @@
           <tr v-for="user in users" :key="user.userID">
 
             <td>{{ user.userID }}</td>
-            <td><img :src="user.userProfile" style="hei<td>{{ user.userRole }}</td>ght:5rem; width: 5rem;"></td>
+            <td><img :src="user.userProfile" style="hei<td>{{ user.userRole }}</td>ght:5rem; width: 5rem; height: 5rem;"></td>
             <td>{{ user.firstName }}</td>
             <td>{{ user.lastName }}</td>
             <td>{{ user.cellphoneNumber }}</td>

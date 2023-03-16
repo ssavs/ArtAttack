@@ -12,8 +12,8 @@
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color:white;
-    color: #9f7a47;
+    background-color: #9f7a47;
+    color:white;
     text-align: center;
     font-size: x-large;
   }

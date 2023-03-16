@@ -29,6 +29,7 @@ components:{
   background-color:#825938;
   background-repeat: no-repeat;
 background-size: cover;
+overflow-x: hidden;
 
 
 }
