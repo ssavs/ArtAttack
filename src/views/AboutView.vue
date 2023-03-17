@@ -22,7 +22,7 @@
               buy, sell and trade in the Metaverse. Just like there is only one
               original with physical art, NFT art only has one original.
             </p>
-            <a class="btn btn-dark shop" href="#" role="button"
+            <a class="btn btn-light shop" href="#" role="button"
               ><router-link to="/products">Get Your Art Today !</router-link></a
             >
           </div>

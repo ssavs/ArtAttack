@@ -86,7 +86,7 @@
               <th scope="row">{{ product.prodName }}</th>
               <th scope="row">{{ product.prodDescription }}</th>
               <td scope="row">R{{ product.price }}</td>
-              <td><img :src="product.imgURL" style="height: 5rem; width: 7rem;" /></td>
+              <td><img :src="product.imgURL" style="height: 8rem; width: 10rem;" /></td>
               <td>
                 <button type="button" class="btn btn-primary" style="width: 5rem" data-bs-toggle="modal"
                   data-bs-target="#updateProductModal">

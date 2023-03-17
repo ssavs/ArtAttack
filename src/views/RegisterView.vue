@@ -1,44 +1,77 @@
 <template>
     <div class="register">
     <div class="container">
-<form action="" method="">
+<form class="form" @submit.prevent="$event => Registration()">
   <label for="first-name">First Name:</label>
-  <input type="text" id="first-name" name="first-name" required>
+  <input type="text" id="first-name" name="first-name" required v-model="payload.firstName">
 
   <label for="last-name">Last Name:</label>
-  <input type="text" id="last-name" name="last-name" required>
-
+  <input type="text" id="last-name" name="last-name" required v-model="payload.lastName">
 
   <label for="cellphone-number">Cellphone Number:</label>
-  <input type="tel" id="cellphone-number" name="cellphone-number" required>
-
+  <input type="tel" id="cellphone-number" name="cellphone-number" required v-model="payload.cellphoneNumber">
+  
   <label for="email">Email:</label>
-  <input type="email" id="email" name="email" required>
-
+  <input type="email" id="email" name="email" required v-model="payload.emailAddress">
+  
+  <!-- <label for="user-role">User Role:</label> -->
+  <!-- <input type="text" id="user-role" name="user-role" required v-model="payload.userRole"> -->
+               <label>User Role:</label> 
+  <select class="form-control" required id="user-role" name="user-role" v-model="payload.userRole">
+                  <option value="Admin">Admin</option>
+                  <option value="User">User</option>
+                </select>
+            
   <label for="password">Password:</label>
-  <input type="password" id="password" name="password" required>
+  <input type="password" id="password" name="password" required v-model="payload.userPassword">
 
-  <label for="password">Confirm Password</label>
-  <input type="password" id="password" name="password" required>
+  <label for="confirmP">Confirm Password</label>
+  <input type="password" id="confirmP" name="confirmP" required v-model="confirmPassword">
 
   <input type="submit" value="Register">
 </form>
 </div>
     </div>
+    
 </template>
 
 <script>
 
     export default {
-        
-    }
+      data() {
+        return{
+          payload:{
+            firstName:"",
+            lastName:"",
+            cellphoneNumber:"",
+            emailAddress:"",
+            userRole:"user",
+            userPassword:"",
+          },
+           confirmPassword:""
+
+          }
+        },
+
+        methods:{
+          Registration(){
+            if(this.payload.userPassword ==! this.confirmPassword){
+              alert('Password doesnt match')
+            
+            }
+            else {
+              this.$store.dispatch("Register",this.payload);
+            }
+          }
+        }
+      }  
 </script>
 
 <style  scoped>
      .register{
         /* background-color: #DDE5BE; */
-        padding-top:10rem;
-        padding-bottom: 2rem;
+        padding-top:4rem;
+        padding-bottom: 8rem;
      }
     .container {
       max-width: 800px;
@@ -66,6 +99,7 @@
     input[type="email"],
     input[type="tel"],
     input[type="password"],
+    input[type= "confirmP"]
     select {
       width: 100%;
       padding: 10px;

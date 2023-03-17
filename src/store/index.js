@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createStore } from "vuex";
+// import router from '../router/index';
 const AAURL = "https://art-attack.onrender.com/";
 export default createStore({
   state: {
@@ -33,6 +34,9 @@ export default createStore({
       state.user = value;
     },
     setProducts: (state, products) => (state.products = products),
+    setProduct(state, value) {
+      state.product = value
+    },
     setMessage(state, values) {
       state.message = values;
     },
@@ -70,11 +74,11 @@ export default createStore({
         context.commit("setSpinner", true);
       }
     },
-    fetchProduct: async (context) => {
-      const response = await axios.get(`${AAURL}product/:id`);
-      const { result } = response.data;
-      if (result) {
-        context.commit("setProducts", result);
+    fetchProduct: async (context, id) => {
+      const response = await axios.get(`${AAURL}product/${id}`);
+      const { results } = await response.data;
+      if (results) {
+        context.commit("setProduct", results[0]);
         context.commit("setSpinner", false);
       } else {
         context.commit("setSpinner", true);
@@ -119,6 +123,16 @@ export default createStore({
       
     }},
 
+    async Register(context,payload){
+const res = await axios.post(`${AAURL} register`,payload)
+const {msg,err} = await res.data;
+if(msg) {
+context.commit('setMessage',msg);
+}else{
+  context.commit('setMessage',err);
+}
+}},
+
     async updateUser(context){
       const res = await axios.put(`${AAURL}user/:id`);
       const { result, err } = await res.data;
@@ -137,12 +151,9 @@ export default createStore({
         context.commit("setMessage ", err);
       
     }},
-
-
     
     },
 
 modules: {
-
 }
-  });
+});
