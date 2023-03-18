@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createStore } from "vuex";
-// import router from '../router/index';
+import router from '../router/index';
 const AAURL = "https://art-attack.onrender.com/";
 export default createStore({
   state: {
@@ -16,14 +16,14 @@ export default createStore({
 
   },
   getters: {
-    getProducts: (state) => state.products,
-    getProduct:(state) =>state.products,
-    getUsers: (state) => state.users,
-    addproduct:(state)=>state.addproduct,
-    deleteproduct:(state)=>state.deleteproduct,
-    addUser:(state)=>state.product,
-    updateUser:(state)=>state.updateproduct,
-    editproduct:(state)=>state.editproduct,
+    // getProducts: (state) => state.products,
+    // getProduct:(state) =>state.products,
+    // getUsers: (state) => state.users,
+    // addproduct:(state)=>state.addproduct,
+    // deleteproduct:(state)=>state.deleteproduct,
+    // addUser:(state)=>state.product,
+    // updateUser:(state)=>state.updateproduct,
+    // editproduct:(state)=>state.editproduct,
    
   },
   mutations: {
@@ -43,16 +43,13 @@ export default createStore({
     setSpinner(state, value) {
       state.showSpinner = value;
     },
-    addProduct:(state,value) =>(state.value=value),
-    deleteproduct:(state,value) =>(state.value=value),
-    addUser:(state,value) =>(state.value=value),
-    updateUser:(state,value) =>(state.value=value),
-    getProduct:(state,value) =>(state.value=value),
-    editproduct:(state,editproduct)=>state.editproduct=editproduct,
-
-
-
-  },
+    // addProduct:(state,value) =>(state.value=value),
+    // deleteproduct:(state,value) =>(state.value=value),
+    // addUser:(state,value) =>(state.value=value),
+    // updateUser:(state,value) =>(state.value=value),
+    // getProduct:(state,value) =>(state.value=value),
+    // editproduct:(state,editproduct)=>state.editproduct=editproduct,
+},
   actions: {
     async fetchUsers(context) {
       const res = await axios.get(`${AAURL}users`);
@@ -133,6 +130,32 @@ context.commit('setMessage',msg);
 }
 }},
 
+async Login(context, payload) {
+  const res = await axios.post(`${AAURL} login`,payload)
+  const { msg, err } = await res.data;
+  if (msg) {
+    context.commit("setMessage", msg)
+    router.push('/')
+  } else {
+    context.commit("setMessage", err);
+ 
+  }
+},
+
+// async Login (context,payload){
+// const res = await axios.post(`${AAURL} login`,payload)
+// const {msg,err} = await res.data;
+// if(msg) {
+// context.commit('setMessage',msg)
+// router.push('/');
+// }else{
+//   context.commit('setMessage',err);
+// }
+// }},
+
+
+
+
     async updateUser(context){
       const res = await axios.put(`${AAURL}user/:id`);
       const { result, err } = await res.data;
@@ -152,8 +175,5 @@ context.commit('setMessage',msg);
       
     }},
     
-    },
-
-modules: {
-}
-});
+    }
+);

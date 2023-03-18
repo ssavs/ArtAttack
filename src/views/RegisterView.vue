@@ -1,5 +1,6 @@
 <template>
     <div class="register">
+      <h1>Register</h1>
     <div class="container">
 <form class="form" @submit.prevent="$event => Registration()">
   <label for="first-name">First Name:</label>
@@ -70,14 +71,14 @@
 <style  scoped>
      .register{
         /* background-color: #DDE5BE; */
-        padding-top:4rem;
-        padding-bottom: 8rem;
+        padding-top:2rem;
+        padding-bottom: 5rem;
      }
     .container {
       max-width: 800px;
       margin: 0 auto;
       padding: 20px;
-      background-color: #DDE5BE;
+      background-color:#c49e6893;
       border-radius: 5px;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
       
@@ -131,6 +132,10 @@
       input[type="submit"] {
         padding: 5px 10px;
       }
+    }
+
+    h1{
+      color: white;
     }
 
 </style>

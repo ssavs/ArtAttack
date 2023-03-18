@@ -2,14 +2,7 @@
   <div v-if="spinnerDisplay" class="spinnerContainer">
     <SpinnerComp />
   </div>
-
   <div v-else-if="!
-  
-  
-  
-  
-  
-  
   spinnerDisplay" class="container-fluid products">
     <div class="row">
       <div class="col">

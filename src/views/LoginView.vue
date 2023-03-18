@@ -1,12 +1,13 @@
 <template>
     <div class="login">
+      <h1>Login</h1>
         <div class="container">
-    <form action="" method="">
+    <form @submit.prevent="Login">
       <label for="email">Email</label>
-      <input type="email" id="email" name="email" required>
+      <input type="email" id="email" name="email" required v-model="payload.emailAddress">
     
       <label for="password">Password</label>
-      <input type="password" id="password" name="password" required>
+      <input type="password" id="password" name="password" required v-model="payload.userPassword">
       <input type="submit" value="Login">
       </form>
         
@@ -19,16 +20,29 @@
     </template>
     
     <script>
-    
-        export default {
-            
-        }
+export default{
+  setup() {
+    return {
+      payload: {
+        emailAddress: '',
+      userPassword: ''
+      }
+     
+    };
+  },
+  methods: {
+    Login() {
+      this.$store.dispatch("Login", this.payload)
+      this.$router.push('/');
+    }
+  }
+}
     </script>
     
     <style  scoped>
     .login{
         /* background-color: #f7f7f2; */
-            padding-top:10rem;
+            padding-top:3rem;
             padding-bottom: 2rem;
     }
     
@@ -60,7 +74,7 @@
         }
     
         input[type="submit"] {
-          background-color: #a3299b;
+          background-color:rgb(62,28,10);
           color: #ffffff;
           padding: 10px 20px;
           border: none;
@@ -70,7 +84,7 @@
         }
     
         input[type="submit"]:hover {
-          background-color: #a548b2;
+          background-color:rgb(106, 57, 30);
         }
     
         @media screen and (max-width: 600px) {
@@ -99,13 +113,20 @@
     .btn{
       border-radius: 5px;
       color: white;
-      background-color: #a3299b;
+      background-color: rgb(62,28,10);
       transition: all 0.5s;
       width: 15%;
       text-decoration: none;
       margin-top: 10%;
       margin-left: 60%;
-    
+    }
+
+    .btn :hover{
+      background-color: rgb(97, 54, 31);
+    }
+
+    h1{
+      color: white;
     }
 
     </style>

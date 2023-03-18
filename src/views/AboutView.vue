@@ -22,7 +22,7 @@
               buy, sell and trade in the Metaverse. Just like there is only one
               original with physical art, NFT art only has one original.
             </p>
-            <a class="btn btn-light shop" href="#" role="button"
+            <a class="btn btn-light shop" href="#" role="button" style="background-color:rgb(73,32,12);"
               ><router-link to="/products">Get Your Art Today !</router-link></a
             >
           </div>
@@ -114,7 +114,7 @@ export default {
   background-color: #f7f7f2;
   height: 100vh;
   overflow-y: hidden;
-  padding-top: 10rem;
+  padding-top: 6rem;
   background: linear-gradient(-45deg, #7B4C2B,#906F50);
 	background-size: 400% 400%;
 	animation: gradient 10s ease infinite;

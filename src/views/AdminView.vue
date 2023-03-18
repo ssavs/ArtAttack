@@ -1,4 +1,5 @@
 <template>
+  <SpinnerComp/>
   <div class="container-fluid">
 
     <div class="container text-center">
@@ -10,18 +11,17 @@
 
         </div>
         <div class="col">
-          <button type="button" class="btn btn-primary" style="width: 5rem; height: ;">
+          <button type="button" class="btn btn-primary" style="width: 5rem; margin-left: 55rem;">
             AddUser
           </button>
         </div>
-
         <div class="col">
 
         </div>
       </div>
     </div>
 
-    <div class="row">
+    <div class="row" style="color: white;">
       <h1>Users</h1>
     </div>
     <div class="row">
@@ -35,7 +35,6 @@
             <th scope="col">Cellphone Number</th>
             <th scope="col">EmailAddress</th>
             <th scope="col">UserRole</th>
-            <th scope="col">Password</th>
             <th scope="col">Action</th>
             <th scope="col">Action</th>
           </tr>
@@ -50,15 +49,14 @@
             <td>{{ user.cellphoneNumber }}</td>
             <td>{{ user.emailAddress }}</td>
             <td>{{ user.userRole }}</td>
-            <td>{{ user.userPassword }}</td>
 
             <td>
-              <button type="button" class="btn btn-primary" style="width: 5rem">
+              <button type="button" class="btn btn-primary" style="width: 5rem;background-color:rgb(62,28,10); border-color: white;">
                 Edit
               </button>
             </td>
             <td>
-              <button type="button" class="btn btn-danger">
+              <button type="button" class="btn btn-danger" style="background-color: rgb(62,28,10);border-color: white;">
                 Delete
               </button>
             </td>
@@ -66,9 +64,9 @@
         </tbody>
       </table>
 
-      <div class="products">
+      <div class="products" style="color: white; padding-top: 5%">
         <h1>Products</h1>
-        <table class="table table productss">
+        <table class="table table productss" style="padding-top: 5%;">
           <thead>
             <tr>
               <th scope="col">ID</th>
@@ -88,7 +86,7 @@
               <td scope="row">R{{ product.price }}</td>
               <td><img :src="product.imgURL" style="height: 8rem; width: 10rem;" /></td>
               <td>
-                <button type="button" class="btn btn-primary" style="width: 5rem" data-bs-toggle="modal"
+                <button type="button" class="btn btn-primary" style="width: 5rem;background-color:rgb(62,28,10);border-color: white;" data-bs-toggle="modal"
                   data-bs-target="#updateProductModal">
                   Edit
                 </button>
@@ -98,7 +96,7 @@
               <td>
 
 
-                <button type="button" class="btn btn-danger" style="width: 5rem" data-bs-toggle="modal"
+                <button type="button" class="btn btn-danger" style="width: 5rem;background-color: rgb(62,28,10); border-color: white;" data-bs-toggle="modal"
                   data-bs-target="#updateProductModal">
                   Delete
                 </button>
@@ -140,13 +138,13 @@ export default {
 
 <style scoped>
 .container-fluid {
-  padding-top: 9rem;
+  padding-top: 2rem;
   /* background-color:rgba(0, 73, 34, 0.527); */
 }
 
 @media screen and (max-width: 700px) {
   .container-fluid {
-    padding-top: 17rem;
+    padding-top: 10rem;
     padding-bottom: 1rem;
   }
 }
@@ -158,6 +156,7 @@ export default {
 
 th {
   color: white;
+  font-weight: 100;
 }
 
 .productss {

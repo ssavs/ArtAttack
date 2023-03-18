@@ -19,7 +19,7 @@
                 <label for="message">Message</label>
                 <textarea class="form-control" id="message" rows="5" name="message" required></textarea>
             </div>
-            <button type="submit" class="btn btn-dark m-3" style="background-color: #b13095;">Send</button>
+            <button type="submit" class="btn btn-dark m-3" style="background-color:rgb(62,28,10) ;">Send</button>
         </form>
     </div>
     <div class="col info">
@@ -39,10 +39,11 @@ export default {
 </script>
 <style scoped>
 .container{
-    height: 90vh;
-    background-color: #f7f7f296;
-    padding-top:10rem;
+    height: 75vh;
+    background-color: #4d310874;
+    padding-top:5rem;
     font-size: large;
+    color: white;
   }
     
     .info{

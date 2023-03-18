@@ -1,7 +1,7 @@
 <template>
   <NavBar />
-  <h1 class="animate__animated animate__animate__slideInLeft">ART</h1>
-  <h1 class="">ATTACK</h1>
+  <img src="https://i.postimg.cc/NMYYRTRQ/My-project-1-removebg-preview.png" alt="" style="margin-top: 0.0025rem; margin-left: 75rem; width:20rem ;height: 15rem;">
+  <img src="https://i.postimg.cc/q7xz3pW6/My-project-1-1-removebg-preview.png" alt="" style="margin-right: 75rem; width: 20rem ; height: 25rem;">
 </template>
 
 <script>
@@ -21,5 +21,8 @@ body {
   min-height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
+
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 </style>
