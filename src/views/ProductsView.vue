@@ -9,20 +9,22 @@
         column
       </div>
       <div class="col" style="margin-top: 2%;">
-        <FilterProducts />
       </div>
-      <div class="col" style="margin-top: 2%;">
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-          <button class="btn btn-dark " type="submit">Search</button>
-        </form>
-      </div>
+    <div class="dropdown">
+  <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    Sorting
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <li><a class="dropdown-item" href="#">NFTs</a></li>
+    <li><a class="dropdown-item" href="#">Art Pieces</a></li>
+  </ul>
+</div>
     </div>
     <div class="row justify-content-center ">
     </div>
-    <div class="row gap-3 cardsContainer">
+    <div class="row gap-3 cardsContainer" style="margin-top: 5%;">
       <div class="card" v-for="product in products" :key="product">
-        <div class="card-img">
+        <div class="card-img image-fluid">
           <img :src="product.imgURL" alt="" class="art">
         </div>
         <div class="card-info">
@@ -44,10 +46,9 @@
 import SpinnerComp from "@/components/SpinnerComp.vue";
 import { computed } from "@vue/runtime-core";
 import { useStore } from "vuex";
-import FilterProducts from "@/views/FilterProductsView.vue";
 
 export default {
-  components: { SpinnerComp, FilterProducts },
+  components: { SpinnerComp },
   setup() {
     const store = useStore();
     store.dispatch("fetchProducts");

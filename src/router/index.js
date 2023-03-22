@@ -8,7 +8,6 @@ import RegisterView from "../views/RegisterView.vue";
 import UpdateProductView from "../views/UpdateProductView.vue";
 import ProductsView from "../views/ProductsView.vue";
 import CartView from "../views/CartView.vue";
-import WishList from "../views/WishListView.vue";
 import SingleProductView from "@/views/SingleProductView.vue";
 
 const routes = [
@@ -57,11 +56,7 @@ const routes = [
     name: "cart",
     component: CartView,
   },
-  {
-    path: "/wishlist",
-    name: "wishlist",
-    component: WishList,
-  },
+  
   {
     path:"/singleproduct/:id",
     name:"singleproduct",

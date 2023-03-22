@@ -81,31 +81,51 @@ export default createStore({
         context.commit("setSpinner", true);
       }
     },
-
-    async addProduct(context) {
-      const res = await axios.post(`${AAURL}product/:id`);
-      const { result, err } = await res.data;
-      if (result) {
-        context.commit("setUsers", result);
-      } else {
-        context.commit("setMessage", err);
-     
-      }
+    async addProduct(context, payload){
+      fetch(`${AAURL}product`, {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+        body: JSON.stringify(payload),
+      })
+      .then((res) =>res.json())
+      .then((data) => {
+        console.log(data.msg);
+        context.dispatch('fetchProducts')
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     },
-    async deleteProduct(context){
-      const res = await axios.delete(`${AAURL}product/:id`);
+
+    // async addProduct(context) {
+    //   const res = await axios.post(`${AAURL}product/:id`);
+    //   const { result, err } = await res.data;
+    //   if (result) {
+    //     context.commit("setUsers", result);
+    //   } else {
+    //     context.commit("setMessage", err);
+     
+    //   }
+    // },
+    async deleteProduct(context,id){
+      const res = await axios.delete(`${AAURL}product/${id}`);
       const { result, err } = await res.data;
       if (result) {
         context.commit("setProducts", result);
+        context.dispatch('fetchProducts');
       } else {
         context.commit("setMessage", err);
       
     }},
-    async deleteUser(context){
-      const res = await axios.delete(`${AAURL}user/:id`);
+    async deleteUser(context,id){
+      const res = await axios.delete(`${AAURL}user/${id}`);
       const { result, err } = await res.data;
       if (result) {
         context.commit("setUsers", result);
+        context.dispatch('fetchUsers');
       } else {
         context.commit("setMessage", err);
       
@@ -119,16 +139,35 @@ export default createStore({
         context.commit("setMessage", err);
       
     }},
+    async register(context, payload){
+      console.log(payload);
+      fetch(`https://art-attack.onrender.com/register`, {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+        body: JSON.stringify(payload),
+      })
+      .then((res) =>res.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    },
 
-    async Register(context,payload){
-const res = await axios.post(`${AAURL} register`,payload)
-const {msg,err} = await res.data;
-if(msg) {
-context.commit('setMessage',msg);
-}else{
-  context.commit('setMessage',err);
-}
-}},
+// async Register(context,payload){
+// const res = await axios.post(`${AAURL}register`,payload)
+// const {msg,err} = await res.data;
+// if(msg) {
+// context.commit('setMessage',msg);
+// }else{
+//   context.commit('setMessage',err);
+// }
+// }
+// },
 
 async Login(context, payload) {
   const res = await axios.post(`${AAURL} login`,payload)
@@ -156,8 +195,8 @@ async Login(context, payload) {
 
 
 
-    async updateUser(context){
-      const res = await axios.put(`${AAURL}user/:id`);
+    async updateUser(context,{id,user}){
+      const res = await axios.put(`${AAURL}user/${id}`,user);
       const { result, err } = await res.data;
       if (result) {
         context.commit("setUsers", result);
@@ -165,8 +204,8 @@ async Login(context, payload) {
         context.commit("setMessage", err);
       
     }},
-    async updateProduct(context){
-      const res = await axios.put(`${AAURL}product/:id`);
+    async updateProduct(context,{id,product}){
+      const res = await axios.put(`${AAURL}product/${id}`,product);
       const { result, err } = await res.data;
       if (result) {
         context.commit("setUpdate", result);
@@ -176,4 +215,4 @@ async Login(context, payload) {
     }},
     
     }
-);
+  });

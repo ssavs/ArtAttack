@@ -40,11 +40,11 @@ export default {
 <style scoped>
 .container{
     height: 75vh;
-    background-color: #4d310874;
+    background-color: #c49e6893;
     padding-top:5rem;
     font-size: large;
     color: white;
-  }
+    }
     
     .info{
         margin-top: 10%;

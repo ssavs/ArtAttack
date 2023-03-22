@@ -153,7 +153,7 @@ export default {
     flex-direction: column;
   }
   .home {
-    padding-top: 20rem;
+    padding-top: 20em;
     height: 180vh;
   }
 }

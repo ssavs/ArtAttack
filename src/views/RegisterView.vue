@@ -2,7 +2,7 @@
     <div class="register">
       <h1>Register</h1>
     <div class="container">
-<form class="form" @submit.prevent="$event => Registration()">
+<form class="form" @submit.prevent="Registration">
   <label for="first-name">First Name:</label>
   <input type="text" id="first-name" name="first-name" required v-model="payload.firstName">
 
@@ -37,35 +37,33 @@
 </template>
 
 <script>
-
+import {computed} from '@vue/runtime-core';
+import { useStore } from 'vuex';
     export default {
-      data() {
-        return{
-          payload:{
-            firstName:"",
-            lastName:"",
-            cellphoneNumber:"",
-            emailAddress:"",
-            userRole:"user",
-            userPassword:"",
-          },
-           confirmPassword:""
-
-          }
-        },
-
-        methods:{
-          Registration(){
-            if(this.payload.userPassword ==! this.confirmPassword){
-              alert('Password doesnt match')
-            
-            }
-            else {
-              this.$store.dispatch("Register",this.payload);
-            }
-          }
+      setup() {
+        const payload = {
+          firstName: '',
+          lastName: '',
+          cellphoneNumber: '',
+          emailAddress: '',
+          userRole: '',
+          userPassword: '',
+          confirmPassword: '',
+         };
+         const store = useStore();
+         const userMsg = 
+         computed( ()=>store.state.message)
+         return{
+          payload,
+          userMsg,
+         }
+      },
+      methods: {
+        Registration() {
+          this.$store.dispatch("register", this.payload)
         }
-      }  
+      }
+    }  
 </script>
 
 <style  scoped>

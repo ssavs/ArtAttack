@@ -1,5 +1,6 @@
 <template>
-  <SpinnerComp/>
+  <!-- <SpinnerComp/> -->
+  <EditProduct/>
   <div class="container-fluid">
 
     <div class="container text-center">
@@ -11,11 +12,11 @@
 
         </div>
         <div class="col">
-          <button type="button" class="btn btn-primary" style="width: 5rem; margin-left: 55rem;">
-            AddUser
-          </button>
         </div>
         <div class="col">
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Add User
+          </button>
 
         </div>
       </div>
@@ -43,7 +44,8 @@
           <tr v-for="user in users" :key="user.userID">
 
             <td>{{ user.userID }}</td>
-            <td><img :src="user.userProfile" style="hei<td>{{ user.userRole }}</td>ght:5rem; width: 5rem; height: 5rem;"></td>
+            <td><img :src="user.userProfile" style="hei<td>{{ user.userRole }}</td>ght:5rem; width: 5rem; height: 5rem;">
+            </td>
             <td>{{ user.firstName }}</td>
             <td>{{ user.lastName }}</td>
             <td>{{ user.cellphoneNumber }}</td>
@@ -51,12 +53,13 @@
             <td>{{ user.userRole }}</td>
 
             <td>
-              <button type="button" class="btn btn-primary" style="width: 5rem;background-color:rgb(62,28,10); border-color: white;">
+              <button type="button" class="btn btn-primary"
+                style="width: 5rem;background-color:rgb(62,28,10); border-color: white;">
                 Edit
               </button>
             </td>
             <td>
-              <button type="button" class="btn btn-danger" style="background-color: rgb(62,28,10);border-color: white;">
+              <button type="button" class="btn btn-danger" style="background-color: rgb(62,28,10);border-color: white;" @click="del(user.userID)">
                 Delete
               </button>
             </td>
@@ -86,18 +89,20 @@
               <td scope="row">R{{ product.price }}</td>
               <td><img :src="product.imgURL" style="height: 8rem; width: 10rem;" /></td>
               <td>
-                <button type="button" class="btn btn-primary" style="width: 5rem;background-color:rgb(62,28,10);border-color: white;" data-bs-toggle="modal"
-                  data-bs-target="#updateProductModal">
+                <button type="button" class="btn btn-primary"
+                  style="width: 5rem;background-color:rgb(62,28,10);border-color: white;" data-bs-toggle="modal"
+                  data-bs-target="#exampleModal">
                   Edit
                 </button>
-                <UpdateProduct :key="product.prodID" />
+                <EditProduct :key="product.prodID" />
               </td>
 
               <td>
 
 
-                <button type="button" class="btn btn-danger" style="width: 5rem;background-color: rgb(62,28,10); border-color: white;" data-bs-toggle="modal"
-                  data-bs-target="#updateProductModal">
+                <button type="button" class="btn btn-danger"
+                  style="width: 5rem;background-color: rgb(62,28,10); border-color: white;" data-bs-toggle="modal"
+                  data-bs-target="#updateProductModal" @click="delP(product.prodID)">
                   Delete
                 </button>
 
@@ -109,13 +114,19 @@
         </table>
       </div>
     </div>
+    <AddUser />
+    
   </div>
 </template>
  
 <script>
 import AddProduct from '@/components/AddProduct.vue';
+import UpdateProduct from '@/components/UpdateProduct.vue';
 import { computed } from '@vue/runtime-core';
 import { useStore } from 'vuex';
+import AddUser from '@/components/AddUser.vue';
+import EditProduct from '@/components/EditProduct.vue'
+// import UpdateProduct from '@/components/UpdateProductView.vue';
 
 export default {
   setup() {
@@ -129,11 +140,29 @@ export default {
       users,
       products,
       addProduct,
-
+      EditProduct
     };
   },
-  components: { AddProduct }
+  components: { AddProduct, UpdateProduct, AddUser }
+
+  , 
+  methods:{
+    del(id){
+      this.$store.dispatch('deleteUser', id);
+      location.reload()
+    },
+    delP(id){
+      this.$store.dispatch('deleteProduct', id);
+      location.reload()
+    }
+  }
 };
+ 
+
+
+
+
+
 </script>
 
 <style scoped>
@@ -151,8 +180,9 @@ export default {
 
 .users {
   color: white;
-
 }
+
+
 
 th {
   color: white;

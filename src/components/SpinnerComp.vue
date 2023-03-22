@@ -1,6 +1,9 @@
  <template>
     <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
   </template>
+  export default {
+    name: 'SpinnerComp'
+  }
   <style>
   .lds-spinner {
     color: official;
