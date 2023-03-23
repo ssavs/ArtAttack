@@ -1,6 +1,6 @@
 <template>
   <!-- <SpinnerComp/> -->
-  <EditProduct/>
+  <!-- <EditProduct/> -->
   <div class="container-fluid">
 
     <div class="container text-center">
@@ -32,7 +32,7 @@
             <th scope="col">ID</th>
             <th scope="col">Image</th>
             <th scope="col">Name</th>
-            <th scope="col">Lastname</th>
+            <th scope="col">Surname</th>
             <th scope="col">Cellphone Number</th>
             <th scope="col">EmailAddress</th>
             <th scope="col">UserRole</th>
@@ -75,6 +75,7 @@
               <th scope="col">ID</th>
               <th scope="col">Name</th>
               <th scope="col">Description</th>
+              <th scope="col">Category</th>
               <th scope="col">Price</th>
               <th scope="col">Image</th>
               <th scope="col">Action</th>
@@ -86,6 +87,7 @@
               <td scope="row">{{ product.prodID }}</td>
               <th scope="row">{{ product.prodName }}</th>
               <th scope="row">{{ product.prodDescription }}</th>
+              <th scope="row">{{ product.category }}</th>
               <td scope="row">R{{ product.price }}</td>
               <td><img :src="product.imgURL" style="height: 8rem; width: 10rem;" /></td>
               <td>
@@ -121,11 +123,10 @@
  
 <script>
 import AddProduct from '@/components/AddProduct.vue';
-import UpdateProduct from '@/components/UpdateProduct.vue';
 import { computed } from '@vue/runtime-core';
 import { useStore } from 'vuex';
 import AddUser from '@/components/AddUser.vue';
-import EditProduct from '@/components/EditProduct.vue'
+// import EditProduct from '@/components/EditProduct.vue';
 // import UpdateProduct from '@/components/UpdateProductView.vue';
 
 export default {
@@ -140,18 +141,17 @@ export default {
       users,
       products,
       addProduct,
-      EditProduct
     };
   },
-  components: { AddProduct, UpdateProduct, AddUser }
+  components: { AddProduct, AddUser }
 
   , 
   methods:{
-    del(id){
+    deleteUser(id){
       this.$store.dispatch('deleteUser', id);
       location.reload()
     },
-    delP(id){
+    delProduct(id){
       this.$store.dispatch('deleteProduct', id);
       location.reload()
     }

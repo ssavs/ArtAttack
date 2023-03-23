@@ -114,7 +114,7 @@ export default createStore({
       const res = await axios.delete(`${AAURL}product/${id}`);
       const { result, err } = await res.data;
       if (result) {
-        context.commit("setProducts", result);
+        context.commit("setProducts", result[0]);
         context.dispatch('fetchProducts');
       } else {
         context.commit("setMessage", err);
@@ -124,7 +124,7 @@ export default createStore({
       const res = await axios.delete(`${AAURL}user/${id}`);
       const { result, err } = await res.data;
       if (result) {
-        context.commit("setUsers", result);
+        context.commit("setUsers", result[0]);
         context.dispatch('fetchUsers');
       } else {
         context.commit("setMessage", err);

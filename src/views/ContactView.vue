@@ -1,5 +1,5 @@
 <template>
-        <div class="container mb-4">
+        <div class="container" style="margin-top: 2%;">
   <div class="row"> 
       <div class="col">
           <h2>Contact Our Team !</h2>
@@ -39,15 +39,18 @@ export default {
 </script>
 <style scoped>
 .container{
-    height: 75vh;
+    height: 70vh;
     background-color: #c49e6893;
-    padding-top:5rem;
+    padding-top:4rem;
     font-size: large;
+   margin-bottom: 2rem;
+
     color: white;
     }
     
     .info{
         margin-top: 10%;
+        margin-bottom: 15%;
     }
 </style>
 
