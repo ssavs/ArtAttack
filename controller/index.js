@@ -6,9 +6,11 @@ const bodyParser = require('body-parser');
 // Router
 const route = express.Router();
 // Models
-const {User, Product} = require('../model');
+const {User, Product,Cart} = require('../model');
 // Create a user instance
 const user = new User();
+
+const cart = new Cart();
 // Product instance
 const product = new Product();
 // ^/$|/backend
@@ -75,9 +77,13 @@ route.delete('/product/:id',
 })
 
 // =====Cart===============
+route.post('/Cart',bodyParser.json(),(req,res)=>{
+cart.addCart(req,res);
+});
 
-
-
+route.get('/Cart/:id', (req,res)=>{
+    cart.fetchCart(req,res);
+});
 
 
 

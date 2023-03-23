@@ -196,8 +196,39 @@ class Product {
     });
   }
 }
-// Export User class
-module.exports = {
-  User,
-  Product,
+
+// Cart 
+class Cart {
+  fetchCart(req,res){
+    const strQry = 
+    `SELECT prodName,price,imgURL FROM Cart
+    inner join Products on Cart.prodID = Products.prodID
+    WHERE Cart.userID = ${req.params.id};
+    `;
+    database.query(strQry,(err,results)=>{
+      if (err)throw err;
+      res.status(200).json({results:results})
+    })
+  }
+
+  addCart(req,res) {
+    const strQry =
+    `insert into Cart set ?;`;
+    database.query(strQry,[req.body],
+      (err)=> {
+        if (err) {
+          res.status(400).json({err:"Unable to add Art"})
+        } else{
+          res.status(200).json({msg:"Art successfully added to cart"});
+        }
+      })
+  }
 };
+
+
+  // Export User class
+  module.exports = {
+    User,
+    Product,
+    Cart
+  };
