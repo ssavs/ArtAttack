@@ -34,8 +34,8 @@
 
 <div class="right d-flex flex-column flex-lg-row">
     <div class="icons d-flex flex-column flex-lg-row">
-      <a href="" class="me-lg-3">
-        <i class="fa-solid fa-cart-shopping shopping"><router-link to="/cart"></router-link></i>
+      <a class="me-lg-3">
+        <router-link to='/cart'><i class="fa-solid fa-cart-shopping shopping"></i></router-link>
       </a>
       <a href="" class="me-lg-3">
         <i class="fa-solid fa-heart heart"></i>

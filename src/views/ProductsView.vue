@@ -5,13 +5,10 @@
   <div v-else-if="!
   spinnerDisplay" class="container-fluid products">
     <div class="row">
-      <div class="col">
-        column
-      </div>
       <div class="col" style="margin-top: 2%;">
       </div>
     <div class="dropdown">
-  <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+  <button class="btn btn-dark dropdown-toggle1" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
     Sorting
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -19,6 +16,10 @@
     <li><a class="dropdown-item" href="#">Art Pieces</a></li>
   </ul>
 </div>
+<form class="flex">
+        <input class="form-control" type="search" placeholder="Search" aria-label="Search" v-model="search">
+        <button class="btn btn-outline-dark" type="submit">Search</button>
+      </form>
     </div>
     <div class="row justify-content-center ">
     </div>
@@ -57,9 +58,25 @@ export default {
     return {
       products,
       spinnerDisplay,
+      search:'',
+      category:''
     };
   },
-};
+  computed:{
+    filterProducts(){
+      let filtering = this.products.filter(product=>{
+        return this.category === '' || product.category === this.category;
+      })
+      if (this.search.trim().length >0){
+return filtering.filter(product=>{
+  return product.category.toLowerCase().includes(this.search.trim().toLowerCase());
+});
+      }
+      return filtering;
+    }
+  
+  }
+}
 </script> 
 <style>
 .spinnerContainer{
@@ -154,7 +171,12 @@ a .card-img {
   /* box-shadow: rgba(226, 196, 63, 0.25) 0px 13px 47px -5px, rgba(180, 71, 71, 0.3) 0px 8px 16px -8px; */
   scale: 1.03;
   box-shadow: 0px 6px 15px #000;
+}
 
+.flex{
+  width: 30%;
+  justify-content: center;
+  align-items: center;
 }
 
 .card-button:hover {
@@ -169,6 +191,5 @@ a .card-img {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-}
+  }}
 </style>

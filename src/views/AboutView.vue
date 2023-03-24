@@ -112,13 +112,13 @@ export default {
 <style scoped>
 .home {
   background-color: #f7f7f2;
-  height: 100vh;
+  height: 100%;
   overflow-y: hidden;
-  padding-top: 6rem;
+  padding-top: 4rem;
   background: linear-gradient(-45deg, #7B4C2B,#906F50);
 	background-size: 400% 400%;
 	animation: gradient 10s ease infinite;
-	height: 100vh;
+  margin-bottom: 2rem;
 }
 
 @keyframes gradient {
@@ -153,7 +153,7 @@ export default {
     flex-direction: column;
   }
   .home {
-    padding-top: 20em;
+    padding-top: 5em;
     height: 180vh;
   }
 }

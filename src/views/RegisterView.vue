@@ -1,139 +1,139 @@
 <template>
-    <div class="register">
-      <h1>Register</h1>
+  <div class="register">
+    <h1>Register</h1>
     <div class="container">
-<form class="form" @submit.prevent="Registration">
-  <label for="first-name">First Name:</label>
-  <input type="text" id="first-name" name="first-name" required v-model="payload.firstName">
+      <form class="form" @submit.prevent="Registration">
+        <label for="first-name">First Name:</label>
+        <input type="text" id="first-name" name="first-name" required v-model="payload.firstName">
 
-  <label for="last-name">Last Name:</label>
-  <input type="text" id="last-name" name="last-name" required v-model="payload.lastName">
+        <label for="last-name">Last Name:</label>
+        <input type="text" id="last-name" name="last-name" required v-model="payload.lastName">
 
-  <label for="cellphone-number">Cellphone Number:</label>
-  <input type="tel" id="cellphone-number" name="cellphone-number" required v-model="payload.cellphoneNumber">
-  
-  <label for="email">Email:</label>
-  <input type="email" id="email" name="email" required v-model="payload.emailAddress">
-  
-  <!-- <label for="user-role">User Role:</label> -->
-  <!-- <input type="text" id="user-role" name="user-role" required v-model="payload.userRole"> -->
-               <label>User Role:</label> 
-  <select class="form-control" required id="user-role" name="user-role" v-model="payload.userRole">
-                  <option value="Admin">Admin</option>
-                  <option value="User">User</option>
-                </select>
-            
-  <label for="password">Password:</label>
-  <input type="password" id="password" name="password" required v-model="payload.userPassword">
+        <label for="cellphone-number">Cellphone Number:</label>
+        <input type="tel" id="cellphone-number" name="cellphone-number" required v-model="payload.cellphoneNumber">
 
-  <label for="confirmP">Confirm Password</label>
-  <input type="password" id="confirmP" name="confirmP" required v-model="confirmPassword">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required v-model="payload.emailAddress">
 
-  <input type="submit" value="Register">
-</form>
-</div>
+        <!-- <label for="user-role">User Role:</label> -->
+        <!-- <input type="text" id="user-role" name="user-role" required v-model="payload.userRole"> -->
+        <label>User Role:</label>
+        <select class="form-control" required id="user-role" name="user-role" v-model="payload.userRole">
+          <option value="Admin">Admin</option>
+          <option value="User">User</option>
+        </select>
+        <label for="userProfile">User Profile:</label>
+        <input type="url" class="form-control" id="userProfile" v-model="payload.userProfile" placeholder="URL">
+        <label for="userPassword">Password</label>
+        <input type="password" id="userPassword" name="userPassword" required v-model="payload.userPassword">
+
+        <label for="confirmP">Confirm Password</label>
+        <input type="password" id="confirmP" name="confirmP" required v-model="confirmPassword">
+
+        <input type="submit" value="Register">
+      </form>
     </div>
-    
+  </div>
 </template>
 
 <script>
-import {computed} from '@vue/runtime-core';
+import { computed } from '@vue/runtime-core';
 import { useStore } from 'vuex';
-    export default {
-      setup() {
-        const payload = {
-          firstName: '',
-          lastName: '',
-          cellphoneNumber: '',
-          emailAddress: '',
-          userRole: '',
-          userPassword: '',
-          confirmPassword: '',
-         };
-         const store = useStore();
-         const userMsg = 
-         computed( ()=>store.state.message)
-         return{
-          payload,
-          userMsg,
-         }
-      },
-      methods: {
-        Registration() {
-          this.$store.dispatch("register", this.payload)
-        }
-      }
-    }  
+export default {
+  setup() {
+    const payload = {
+      firstName: '',
+      lastName: '',
+      cellphoneNumber: '',
+      emailAddress: '',
+      userRole: '',
+      userProfile: '',
+      userPassword: '',
+      confirmPassword: '',
+    };
+    const store = useStore();
+    const userMsg =
+      computed(() => store.state.message)
+    return {
+      payload,
+      userMsg,
+    }
+  },
+  methods: {
+    Registration() {
+      this.$store.dispatch("register", this.payload)
+    }
+  }
+}  
 </script>
 
 <style  scoped>
-     .register{
-        /* background-color: #DDE5BE; */
-        padding-top:2rem;
-        padding-bottom: 5rem;
-     }
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-      background-color:#c49e6893;
-      border-radius: 5px;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-      
-    
-    }
+.register {
+  /* background-color: #DDE5BE; */
+  padding-top: 2rem;
+  padding-bottom: 5rem;
+}
 
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #c49e6893;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 
-    label {
-      display: block;
-      margin-bottom: 10px;
-      font-weight: bold;
-    }
 
-    input[type="text"],
-    input[type="email"],
-    input[type="tel"],
-    input[type="password"],
-    input[type= "confirmP"]
-    select {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 20px;
-      border: none;
-      border-radius: 5px;
-      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-    }
+}
 
-    input[type="submit"] {
-      background-color: rgb(156, 66, 27);
-      color: #fff;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
 
-    input[type="submit"]:hover {
-      background-color: rgb(179, 102, 74);
-    }
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
 
-    @media screen and (max-width: 600px) {
-      .container {
-        padding: 10px;
-      }
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+input[type="confirmP"] select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
 
-      input[type="submit"] {
-        padding: 5px 10px;
-      }
-    }
+input[type="submit"] {
+  background-color: rgb(156, 66, 27);
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
-    h1{
-      color: white;
-    }
+input[type="submit"]:hover {
+  background-color: rgb(179, 102, 74);
+}
 
+@media screen and (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
+
+  input[type="submit"] {
+    padding: 5px 10px;
+  }
+}
+
+h1 {
+  color: white;
+}
 </style>

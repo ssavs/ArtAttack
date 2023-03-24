@@ -13,6 +13,7 @@ export default createStore({
     addproduct:null,
     addUser:null,
     editproduct:null,
+    cart:null
 
   },
   getters: {
@@ -43,6 +44,9 @@ export default createStore({
     setSpinner(state, value) {
       state.showSpinner = value;
     },
+     setCart (state,value){
+      state.cart = value;
+     }
     // addProduct:(state,value) =>(state.value=value),
     // deleteproduct:(state,value) =>(state.value=value),
     // addUser:(state,value) =>(state.value=value),
@@ -100,6 +104,25 @@ export default createStore({
       });
     },
 
+    async fetchCart (context,id){
+      const res = await axios.get(`${AAURL}Cart/${id}`);
+      const{err,results} = await res.data;
+      if(results){
+        console.log(results)
+        context.commit('setCart',results);
+      } else{
+        console.log(err)
+        context.commit('setMessage',err);
+      }
+    },
+    async addToCart(context, payload){
+      const res = await axios.post(`${AAURL}Cart`, payload)
+      const {err,results} = await res.data;
+      console.log(res)
+      if(results){
+        context.commit('setMessage', results);
+      } else context.commit('setMessage', err);
+    },
     // async addProduct(context) {
     //   const res = await axios.post(`${AAURL}product/:id`);
     //   const { result, err } = await res.data;
@@ -170,10 +193,13 @@ export default createStore({
 // },
 
 async Login(context, payload) {
-  const res = await axios.post(`${AAURL} login`,payload)
-  const { msg, err } = await res.data;
-  if (msg) {
-    context.commit("setMessage", msg)
+  console.log(payload)
+  const res = await axios.post(`${AAURL}login`,payload)
+  const { err, result } = await res.data;
+  console.log(res);
+  localStorage.setItem('user',JSON.stringify(result))
+  if (result) {
+    context.commit("setUser", result)
     router.push('/')
   } else {
     context.commit("setMessage", err);
@@ -181,16 +207,7 @@ async Login(context, payload) {
   }
 },
 
-// async Login (context,payload){
-// const res = await axios.post(`${AAURL} login`,payload)
-// const {msg,err} = await res.data;
-// if(msg) {
-// context.commit('setMessage',msg)
-// router.push('/');
-// }else{
-//   context.commit('setMessage',err);
-// }
-// }},
+
 
 
 

@@ -44,7 +44,7 @@
           <tr v-for="user in users" :key="user.userID">
 
             <td>{{ user.userID }}</td>
-            <td><img :src="user.userProfile" style="hei<td>{{ user.userRole }}</td>ght:5rem; width: 5rem; height: 5rem;">
+            <td><img :src="user.userProfile" style="hei<td>{{ user.userRole }}</td>ght:5rem; width: 6rem; height: 8rem;">
             </td>
             <td>{{ user.firstName }}</td>
             <td>{{ user.lastName }}</td>
@@ -59,7 +59,7 @@
               </button>
             </td>
             <td>
-              <button type="button" class="btn btn-danger" style="background-color: rgb(62,28,10);border-color: white;" @click="del(user.userID)">
+              <button type="button" class="btn btn-danger" style="background-color: rgb(62,28,10);border-color: white;" @click="deleteUser(user.userID)">
                 Delete
               </button>
             </td>
@@ -74,6 +74,7 @@
             <tr>
               <th scope="col">ID</th>
               <th scope="col">Name</th>
+              <th scope="col">Artist</th>
               <th scope="col">Description</th>
               <th scope="col">Category</th>
               <th scope="col">Price</th>
@@ -86,9 +87,11 @@
             <tr v-for="product in products" :key="product.prodID">
               <td scope="row">{{ product.prodID }}</td>
               <th scope="row">{{ product.prodName }}</th>
+              <td scope="row0">{{ product.prodArtist }}</td>
               <th scope="row">{{ product.prodDescription }}</th>
               <th scope="row">{{ product.category }}</th>
               <td scope="row">R{{ product.price }}</td>
+             
               <td><img :src="product.imgURL" style="height: 8rem; width: 10rem;" /></td>
               <td>
                 <button type="button" class="btn btn-primary"
@@ -104,7 +107,7 @@
 
                 <button type="button" class="btn btn-danger"
                   style="width: 5rem;background-color: rgb(62,28,10); border-color: white;" data-bs-toggle="modal"
-                  data-bs-target="#updateProductModal" @click="delP(product.prodID)">
+                  data-bs-target="#updateProductModal" @click="deleteProduct(product.prodID)">
                   Delete
                 </button>
 

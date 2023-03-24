@@ -33,7 +33,7 @@ export default{
   methods: {
     Login() {
       this.$store.dispatch("Login", this.payload)
-      this.$router.push('/');
+      // this.$router.push('/');
     }
   }
 }

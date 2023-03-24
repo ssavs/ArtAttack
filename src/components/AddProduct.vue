@@ -36,8 +36,12 @@
             <div class="form-group">
               <label for="imgUrl">Image</label>
               <input type="url" class="form-control" id="imgUrl" v-model="payload.imgURL" placeholder="URL" />
+<div class="form-group">
+              <label for="prodArtist">Artist</label>
+              <input type="text" class="form-control" id="prodArtist" v-model="payload.prodArtist"/>
             </div>
-            <!-- <button class="btn btn-success mt-3" type="submit">Add Product</button> -->
+            </div>
+            <button class="btn btn-primary mt-3" type="submit">Add Product</button>
           </form>
         </div>
         <div class="modal-footer">
@@ -45,7 +49,7 @@
             Close
           </button>
           <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-          <button class="btn btn-primary" type="submit">Add Product</button>
+          <!-- <button class="btn btn-primary" type="submit">Add Product</button> -->
         </div>
       </div>
     </div>

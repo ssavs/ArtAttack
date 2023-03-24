@@ -9,11 +9,8 @@
     </div>
     <div class="card-footer footers" style="justify-content: center; color: white; margin-bottom: 2rem;">
         <span class="text-title">R{{ product?.price }}</span>
-        <!-- <i class="fa-solid fa-cart-shopping" style="ga"> -->
-            <!-- <router-link to="/cart"></router-link> -->
-        <!-- </i> -->
         <div class="buyme" style="margin-right: 3rem;">
-        <input type="submit" value="Buy me" style="margin-bottom: 2rem; display: flex;"> 
+        <input type="submit" value="Buy me" style="margin-bottom: 2rem; display: flex;" v-on:click="addToCart(product, user)"> 
         <router-link to="/cart"></router-link>
     </div>
     </div>
@@ -21,18 +18,34 @@
 <script>
 import {computed} from '@vue/runtime-core';
 import { useStore } from 'vuex';
+import { useRoute } from 'vue-router';
+import { useRouter } from 'vue-router';
 
 export default {
     setup() {
         const store = useStore() 
+        const route = useRoute()
+        const router = useRouter()
+        store.dispatch('fetchProduct', route.params.id)
         const product = computed(()=> store.state.product);
+        let user = JSON.parse(localStorage.getItem('user'));
+
+        async function addToCart(product, user){
+            let payload = {
+                userID: user.userID,
+                prodID: product.prodID
+            }
+            await store.dispatch('addToCart', payload);
+            router.push({name: 'cart', path:'/cart'})
+        }
+
         return {
+            user,
             product,
+            addToCart
         };
     },
-    mounted() {
-        this.$store.dispatch('fetchProduct', this.$route.params.id)
-    }
+
 }
 </script>
 <style scoped>
