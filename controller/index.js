@@ -19,7 +19,7 @@ route.get('^/$|/backend', (req, res)=>{
 })
 // =========USER's Router========
 // Login
-route.post('/user', bodyParser.json(), (req, res)=>{
+route.post('/login', bodyParser.json(), (req, res)=>{
     user.login(req, res);
 })
 // Retrieve all users
