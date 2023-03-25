@@ -11,6 +11,7 @@ const app = express();
 const {errorHandling} = require('./middleware/ErrorHandling.js');
 // 
 const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 
 app.use((req, res, next)=> {
     res.header('Access-Control-Allow-Origin', '*')
@@ -23,7 +24,8 @@ app.use(route);
     app.use(
     cors(),
     cookieParser(),
-    express.json,
+    bodyParser.json(),
+    express.json(),
     express.urlencoded({extended: false})
 )
 //Home or /

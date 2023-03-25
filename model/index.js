@@ -9,8 +9,7 @@ let { createToken } = require("../middleware/AuthenticatedUser.js");
 class User {  
   login(req, res) {
     const { emailAddress, userPassword } = req.body;
-    const strQry = `
-              SELECT * FROM Users   WHERE emailAddress = ${emailAddress};`;
+    const strQry = `SELECT * FROM Users WHERE emailAddress = '${emailAddress}';`;
 
     database.query(strQry, async (err, data) => {
       if (err) throw err;
@@ -214,6 +213,7 @@ class Cart {
   addCart(req,res) {
     const strQry =
     `insert into Cart set ?;`;
+    console.log(req.body)
     database.query(strQry,[req.body],
       (err)=> {
         if (err) {

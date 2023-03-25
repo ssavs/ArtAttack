@@ -76,7 +76,9 @@ route.delete('/product/:id',
     product.deleteProduct(req, res);
 })
 
-// =====Cart===============
+// ========= Cart ===============
+
+
 route.post('/Cart',bodyParser.json(),(req,res)=>{
 cart.addCart(req,res);
 });
