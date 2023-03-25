@@ -1,6 +1,6 @@
 <template>
   <div class="home"><NavBar /> 
- <h1>ART ATTACK</h1>
+ <h1 class="heading ">ART ATTACK</h1> 
  <p>Excellence is an art won by training and habituation. <br> We do not act rightly because we have virtue or excellence, but we rather have those because we have acted rightly. We are what we repeatedly do. <br> Excellence, then, is not an act but a habit.</p>
   </div>
 </template>
@@ -21,26 +21,27 @@ export default {
   height: 80vh;
   background-repeat: no-repeat;
   background-size: cover;
-
-  overflow-x: hidden;
-  overflow-y: hidden;
+  overflow: auto;
 }
 
-.home{
-
+.heading{
+background-image: linear-gradient(90deg,#906F50,#7B4C2B);
+background-clip: text;
+color: transparent;
+font-weight: bolder;
+font-size: 5rem;
 }
+
+p{
+  font-size: xx-large;
+  padding-top: 5rem;
+}
+
 
 @media screen and (max-width: 600px) {
-          .container {
-            padding: 10px;
-          }
-    
-          input[type="submit"] {
-            padding: 5px 10px;
-          }
-        }
-/* }
-.art{
-font-size: x-large;
-} */
+h1{
+  scale: 0.5;
+}
+}
+
 </style>
