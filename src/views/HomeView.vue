@@ -1,9 +1,7 @@
 <template>
   <div class="home"><NavBar /> 
-  <!-- <img src="https://i.postimg.cc/NMYYRTRQ/My-project-1-removebg-preview.png" alt="" style="margin-top: 0.0025rem; margin-left: 75rem; width:20rem ;height: 15rem;">
-  <h1 class="art">ART</h1>
-  <img src="https://i.postimg.cc/q7xz3pW6/My-project-1-1-removebg-preview.png" alt="" style="margin-right: 75rem; width: 20rem ; height: 25rem;">
-  <h1 class="attack">ATTACK</h1> -->
+ <h1>ART ATTACK</h1>
+ <p>Excellence is an art won by training and habituation. <br> We do not act rightly because we have virtue or excellence, but we rather have those because we have acted rightly. We are what we repeatedly do. <br> Excellence, then, is not an act but a habit.</p>
   </div>
 </template>
 
