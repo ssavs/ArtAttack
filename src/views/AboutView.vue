@@ -112,7 +112,7 @@ export default {
 <style scoped>
 .home {
   background-color: #f7f7f2;
-  height: 100%;
+  min-height:100vh;
   overflow-y: hidden;
   padding-top: 4rem;
   background: linear-gradient(-45deg, #7B4C2B,#906F50);
@@ -156,6 +156,10 @@ export default {
     padding-top: 5em;
     height: 180vh;
   }
+}
+
+.products{
+  margin-bottom: 2rem;
 }
 
 </style>

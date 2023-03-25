@@ -5,7 +5,7 @@ const AAURL = "https://art-attack.onrender.com/";
 export default createStore({
   state: {
     users: null,
-    user: null,
+    user: JSON.parse(localStorage.getItem('user')) || null,
     products: null,
     product: null,
     showSpinner: true,
@@ -31,8 +31,9 @@ export default createStore({
     setUsers(state, values) {
       state.users = values;
     },
-    setUser(state, value) {
-      state.user = value;
+    setUser(state, user) {
+      state.user = user;
+      localStorage.setItem('user',JSON.stringify(user));
     },
     setProducts: (state, products) => (state.products = products),
     setProduct(state, value) {
@@ -104,6 +105,12 @@ export default createStore({
       });
     },
 
+    async fetchUser({commit}){
+    const res = await axios.get(`${AAURL}user`)
+    commit('setUser',res.data)
+},
+    
+
     async fetchCart (context,id){
       const res = await axios.get(`${AAURL}Cart/${id}`);
       const{err,results} = await res.data;
@@ -123,16 +130,17 @@ export default createStore({
         context.commit('setMessage', results);
       } else context.commit('setMessage', err);
     },
-    // async addProduct(context) {
-    //   const res = await axios.post(`${AAURL}product/:id`);
-    //   const { result, err } = await res.data;
-    //   if (result) {
-    //     context.commit("setUsers", result);
-    //   } else {
-    //     context.commit("setMessage", err);
-     
-    //   }
-    // },
+    async updateCart(context, payload){
+      const res = await axios.post(`${AAURL}Cart`, payload)
+      const {err,results} = await res.data;
+      console.log(res)
+      if(results){
+        context.commit('setMessage', results);
+      } else context.commit('setMessage', err);
+    },
+  
+
+
     async deleteProduct(context,id){
       const res = await axios.delete(`${AAURL}product/${id}`);
       const { result, err } = await res.data;

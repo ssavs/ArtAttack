@@ -1,22 +1,19 @@
 <template>
    <div class="row" style="margin-top: 1.5rem; margin-left: 2rem; margin-bottom: 5rem;">
-  <div class="col-75">
-    <div class="container">
   <div class="col-25">
     <div class="container">
-      <h4>Cart
+      <h1>Cart
         <span class="price" style="color:black">
         </span>
-      </h4>
-      <p v-for="item in cart" :key="item"><a href="#">{{ item.prodName }}</a> <span class="price">R{{ item.price }}</span></p>
+      </h1>
+      <p v-for="item in cart" :key="item"><a href="#">{{ item.prodName }}</a><span class="price">R{{ item.price }}</span></p>
       <hr>
       <br>
       <h2>Total <span class="price" style="color:black"><b>R{{ cartTotal(cart) }}</b></span></h2>
     </div>
   </div>
     </div>
-  </div>
-</div>
+
 </template>
 <script>
 import { useStore } from 'vuex';
@@ -57,6 +54,15 @@ export default {
 </script>
 <style scoped>
 
+h2{
+  color: black;
+}
+
+h1{
+  color: black;
+  margin-bottom: 5rem;
+}
+
 .row {
   display: -ms-flexbox; /* IE10 */
   display: flex;
@@ -88,7 +94,7 @@ export default {
 
 .container {
   background-color: #c49e6893;
-  padding: 5px 20px 15px 20px;
+  padding: 5px 20px 15px 5px;
   border-radius: 3px;
 }
 
@@ -98,6 +104,10 @@ input[type=text] {
   padding: 12px;
   border: 1px solid #ccc;
   border-radius: 3px;
+}
+
+a{
+  color: white;
 }
 
 label {
@@ -129,7 +139,9 @@ label {
 
 span.price {
   float: right;
-  color: rgb(87, 86, 86);
+  color: rgb(255, 255, 255);
+  font-weight: bolder;
+  
 }
 
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (and change the direction - make the "cart" column go on top) */
@@ -140,9 +152,6 @@ span.price {
   .col-25 {
     margin-bottom: 20px;
   }
-}
-h4{
-  text-decoration: underline;
 }
     
 </style>

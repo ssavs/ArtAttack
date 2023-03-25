@@ -49,6 +49,7 @@
       <ul class="dropdown-menu drop" aria-labelledby="navbarDropdown">
         <li><a class="dropdown-item"><router-link to='/login'>Login</router-link></a></li>
         <li><a class="dropdown-item"><router-link to='/register'>Register</router-link></a></li>
+        <li><a class="dropdown-item"><router-link to='/userProfile'>Profile</router-link></a></li>
       </ul>
 </li>
 </div>

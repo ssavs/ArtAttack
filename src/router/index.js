@@ -9,6 +9,7 @@ import UpdateProductView from "../views/UpdateProductView.vue";
 import ProductsView from "../views/ProductsView.vue";
 import CartView from "../views/CartView.vue";
 import SingleProductView from "@/views/SingleProductView.vue";
+import UserProfileView from "@/views/UserProfileView.vue";
 
 const routes = [
   {
@@ -67,6 +68,11 @@ const routes = [
     path: '/:pathMatch(.*)*',
     name: "login",
     component: LoginView 
+  },
+  {
+    path:'/userProfile',
+    name:'userProfile',
+    component:UserProfileView
   }
 ];
 
